@@ -23,15 +23,39 @@ var d = {
   "v": "2F",
   "m": "2G",
   ",": "2A",
-  ".": "2B" // FIXME
+  ".": "2B"
 };
 
+var flag = {};
 for (var i in d) {
-  var tone = "tone-"+d[i];
-  $(document).bind("keydown."+i, i, function(evt) {
-    play_multi_sound("tone-"+d[evt.data]);
+  flag[i] = true;
+}
+
+for (var i in d) {
+  $(document).bind("keydown", i, function(evt) {
+    var key = evt.data.keys;
+    if (flag[key]) {
+      flag[key] = false;
+      play_multi_sound("tone-"+d[evt.data.keys]);
+    }
+  });
+  $(document).bind("keyup", i, function(evt) {
+    var key = evt.data.keys;
+    flag[key] = true;
   });
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 var channel_max = 32;										// number of channels
 audiochannels = new Array();
