@@ -36,12 +36,14 @@ for (var i in d) {
     var key = evt.data.keys;
     if (flag[key]) {
       flag[key] = false;
-      play_multi_sound("tone-"+d[evt.data.keys]);
+      $('#'+d[key]).addClass('pressed');
+      play_multi_sound("tone-"+d[key]);
     }
   });
   $(document).bind("keyup", i, function(evt) {
     var key = evt.data.keys;
     flag[key] = true;
+    $('#'+d[key]).removeClass('pressed');
   });
 }
 
