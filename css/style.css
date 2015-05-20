@@ -4,6 +4,9 @@ h1 {
 pre {
   text-align: center;
 }
+p {
+  text-align: center;
+}
 #pianoStrings {
   display: none;
 }
